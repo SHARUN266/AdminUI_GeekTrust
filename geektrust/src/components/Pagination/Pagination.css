@@ -1,0 +1,53 @@
+.containerPagi{
+    display: flex;
+    padding: 20px 0px;
+    width: 90%;
+    justify-content: space-between;
+   
+    margin: auto;
+    margin-top: 5%;
+}
+.containerPagi>button{
+    background: rgb(249, 40, 75);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+
+}
+.paginationCon {
+ 
+  width: 50%;
+  margin: auto;
+  color: white;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-around;
+
+
+
+}
+.paginationCon>button:first-child{
+    background:red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+
+}
+.page{
+    background: blue;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+.paginationCon>button:last-child{
+    background:green;
+    color: white;
+    border: none;
+    padding: 5px;
+
+    cursor: pointer;
+}

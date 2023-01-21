@@ -1,0 +1,10 @@
+.searchCon > input {
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  height: 2vh;
+  padding: 10px;
+  font-weight: 700;
+  border: 1px solid gray;
+  border-radius: 5px;
+}

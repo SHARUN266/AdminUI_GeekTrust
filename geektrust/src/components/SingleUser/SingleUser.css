@@ -1,0 +1,25 @@
+.action {
+  display: flex;
+
+  
+  gap: 18px;
+  align-items: center;
+  justify-content: space-around;
+  font-weight: 700;
+}
+.action > button:first-child {
+  background: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.action > button:last-child {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
