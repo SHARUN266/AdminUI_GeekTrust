@@ -19,7 +19,12 @@ export default function Admin() {
   }, [text]);
 
   function handleSearch(e) {
-    setText(e.target.value);
+    // Here i add debounce method to avoid unwanted request
+    let id;
+    setTimeout(() => {
+      if(id) clearTimeout(id)
+      setText(e.target.value);
+    }, 1000);
   }
 
   return (
