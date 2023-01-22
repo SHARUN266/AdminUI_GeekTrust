@@ -1,9 +1,7 @@
 import React from "react";
 import SingleUser from "../SingleUser/SingleUser";
-import "./UserTable.css"
-export default function UserTable({user}) {
-
-
+import "./UserTable.css";
+export default function UserTable({ user }) {
   return (
     <table className="userCon">
       <tr>
@@ -13,12 +11,9 @@ export default function UserTable({user}) {
         <th>Role</th>
         <th>Actions</th>
       </tr>
-      {
-         user?.map((e)=>(
-
-          <SingleUser {...e}/>
-        ))
-      }
+      {user?.map((e) => (
+        <SingleUser key={e.id} {...e} />
+      ))}
     </table>
   );
 }

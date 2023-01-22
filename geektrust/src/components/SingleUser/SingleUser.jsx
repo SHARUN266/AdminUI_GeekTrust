@@ -4,7 +4,7 @@ export default function SingleUser(props) {
   const { id, name, email, role } = props;
 
   return (
-    <tr key={id}>
+    <tr >
       <td>
         {" "}
         <input type="checkbox" />{" "}
