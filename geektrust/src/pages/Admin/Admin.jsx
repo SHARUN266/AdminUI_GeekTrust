@@ -9,6 +9,10 @@ import Search from "../../components/Search/Search";
 import UserTable from "../../components/UserTable/UserTable";
 import "./Admin.css";
 export default function Admin() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
+
   const [text, setText] = useState("");
 
   const { data, isLoading, loadingText, errorText, isError, isSuccess } =
@@ -17,15 +21,23 @@ export default function Admin() {
   useEffect(() => {
     dispatch(FetchUsers(text));
   }, [text]);
+  useEffect(() => {
+    setTotalPages(Math.ceil(data.length / itemsPerPage));
+}, [data, itemsPerPage]);
+
 
   function handleSearch(e) {
     // Here i add debounce method to avoid unwanted request
     let id;
     setTimeout(() => {
-      if(id) clearTimeout(id)
+      if (id) clearTimeout(id);
       setText(e.target.value);
     }, 1000);
   }
+  const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
 
   return (
     <div className="container">
@@ -33,7 +45,7 @@ export default function Admin() {
       <Search handleSearch={handleSearch} />
       {isLoading && <h1>{loadingText}</h1>}
       {isError && <h1>{errorText}</h1>}
-      {isSuccess && <UserTable user={data} />}
+      {isSuccess && <UserTable user={currentItems} />}
 
       <Pagination />
     </div>
