@@ -1,15 +1,17 @@
 import React from "react";
 import "./SingleUser.css";
-export default function SingleUser() {
+export default function SingleUser(props) {
+  const { id, name, email, role } = props;
+
   return (
-    <tr>
+    <tr key={id}>
       <td>
         {" "}
         <input type="checkbox" />{" "}
       </td>
-      <td>Sharun</td>
-      <td>Sharunattari266@gmail.com</td>
-      <td>Member</td>
+      <td>{name}</td>
+      <td>{email}</td>
+      <td>{role}</td>
       <td className="action">
         <button>Edit</button>
         <button>Delete</button>

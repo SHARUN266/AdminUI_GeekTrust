@@ -1,7 +1,9 @@
 import React from "react";
 import SingleUser from "../SingleUser/SingleUser";
 import "./UserTable.css"
-export default function UserTable() {
+export default function UserTable({user}) {
+
+
   return (
     <table className="userCon">
       <tr>
@@ -12,9 +14,9 @@ export default function UserTable() {
         <th>Actions</th>
       </tr>
       {
-         Array(25).fill(25).map((e)=>(
+         user?.map((e)=>(
 
-          <SingleUser/>
+          <SingleUser {...e}/>
         ))
       }
     </table>
