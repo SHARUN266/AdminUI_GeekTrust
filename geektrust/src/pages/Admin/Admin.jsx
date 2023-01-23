@@ -22,6 +22,7 @@ export default function Admin() {
     dispatch(FetchUsers(text));
   }, [text]);
   useEffect(() => {
+   
     setTotalPages(Math.ceil(data.length / itemsPerPage));
   }, [data, itemsPerPage]);
 
@@ -39,7 +40,7 @@ export default function Admin() {
   function handlePagination(value) {
     setCurrentPage((prev) => prev + value);
   }
-
+  console.log(data)
   return (
     <div className="container">
       <h1>Admin UI</h1>

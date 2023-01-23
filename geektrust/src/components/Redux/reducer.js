@@ -4,7 +4,7 @@ const initState = {
   loadingText: null,
   isError: false,
   errorText: null,
-  isSuccess:false,
+  isSuccess: false,
   data: [],
 };
 const reducer = (state = initState, { type, payload }) => {
@@ -21,7 +21,7 @@ const reducer = (state = initState, { type, payload }) => {
         ...state,
         isLoading: false,
         loadingText: null,
-        isSuccess:true,
+        isSuccess: true,
         data: payload,
       };
     }
@@ -34,8 +34,33 @@ const reducer = (state = initState, { type, payload }) => {
         errorText: payload,
       };
     }
-    default:{
-        return state
+    case types.DELETE_API_USER_LOADING: {
+      return {
+        ...state,
+        isLoading: true,
+        loadingText: payload,
+      };
+    }
+    case types.DELETE_API_USER_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        loadingText: null,
+        isSuccess: true,
+        data: payload,
+      };
+    }
+    case types.DELETE_API_USER_ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        loadingText: null,
+        isError: true,
+        errorText: payload,
+      };
+    }
+    default: {
+      return state;
     }
   }
 };

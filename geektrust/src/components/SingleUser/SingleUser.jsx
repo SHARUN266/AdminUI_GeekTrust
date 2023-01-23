@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { DeleteUserById } from "../Redux/actions";
 import "./SingleUser.css";
 export default function SingleUser(props) {
+  const dispatch=useDispatch()
   const { id, name, email, role } = props;
 
   return (
@@ -14,7 +17,7 @@ export default function SingleUser(props) {
       <td>{role}</td>
       <td className="action">
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={()=>dispatch(DeleteUserById(id))}>Delete</button>
       </td>
     </tr>
   );
