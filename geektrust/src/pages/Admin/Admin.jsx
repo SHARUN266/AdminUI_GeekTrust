@@ -19,10 +19,11 @@ export default function Admin() {
     useSelector((store) => store.FetchUserReducer);
   const dispatch = useDispatch();
   useEffect(() => {
+    
     dispatch(FetchUsers(text));
   }, [text]);
   useEffect(() => {
-   
+    console.log(data)
     setTotalPages(Math.ceil(data.length / itemsPerPage));
   }, [data, itemsPerPage]);
 
@@ -40,7 +41,7 @@ export default function Admin() {
   function handlePagination(value) {
     setCurrentPage((prev) => prev + value);
   }
-  console.log(data)
+  
   return (
     <div className="container">
       <h1>Admin UI</h1>
@@ -49,7 +50,7 @@ export default function Admin() {
       {isError && <h1>{errorText}</h1>}
       {isSuccess && <UserTable user={currentItems} />}
 
-      <Pagination currentPage={currentPage} totalPages={totalPages} handlePagination={handlePagination} />
+      <Pagination  currentPage={currentPage} totalPages={totalPages} handlePagination={handlePagination} />
     </div>
   );
 }
