@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import "./Pagination.css";
-function Pagination() {
-  const pageNumbers = [...Array(10).keys()].map((i) => i + 1);
+
+function Pagination({ currentPage, totalPages, handlePagination }) {
+  const [selected, setSelected] = useState(currentPage);
+  const pageNumbers = [...Array(totalPages).keys()].map((i) => i + 1);
 
   return (
     <div className="containerPagi">
       <button>Delete selected</button>
       <div className="paginationCon">
-        <button>Previous</button>
+        <button disabled={currentPage === 1} onClick={() => handlePagination(-1)}>Previous</button>
         {pageNumbers.map((page) => (
-          <button className="page" key={page}>
+          <button
+            className={`page ${selected === page ? 'selected' : ''}`}
+            key={page}
+            onClick={() => setSelected(page)}
+          >
             {page}
           </button>
         ))}
-        <button>Next</button>
+        <button disabled={totalPages <= currentPage} onClick={() => handlePagination(1)}>Next</button>
       </div>
     </div>
   );

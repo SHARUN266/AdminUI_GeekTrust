@@ -23,8 +23,7 @@ export default function Admin() {
   }, [text]);
   useEffect(() => {
     setTotalPages(Math.ceil(data.length / itemsPerPage));
-}, [data, itemsPerPage]);
-
+  }, [data, itemsPerPage]);
 
   function handleSearch(e) {
     // Here i add debounce method to avoid unwanted request
@@ -35,9 +34,11 @@ export default function Admin() {
     }, 1000);
   }
   const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
-
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  function handlePagination(value) {
+    setCurrentPage((prev) => prev + value);
+  }
 
   return (
     <div className="container">
@@ -47,7 +48,7 @@ const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
       {isError && <h1>{errorText}</h1>}
       {isSuccess && <UserTable user={currentItems} />}
 
-      <Pagination />
+      <Pagination currentPage={currentPage} totalPages={totalPages} handlePagination={handlePagination} />
     </div>
   );
 }
