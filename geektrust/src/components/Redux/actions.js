@@ -7,7 +7,8 @@ import {
   FETCH_API_USER_SUCCESS,
 } from "./actionTypes";
 
-export const FetchUsers = (text) => async (dispatch) => {
+export const FetchUsers = (id) => async (dispatch) => {
+  let text;
   dispatch({ type: FETCH_API_USER_LOADING, payload: "User data loading..." });
   try {
     let res = await fetch(
@@ -24,7 +25,12 @@ export const FetchUsers = (text) => async (dispatch) => {
           value.role.includes(text)
       );
       dispatch({ type: FETCH_API_USER_SUCCESS, payload: filterData });
-    } else {
+    }else if(id){
+      data=data.splice(id,1);
+      dispatch({ type: FETCH_API_USER_SUCCESS, payload: data });
+    }
+    
+    else {
       dispatch({ type: FETCH_API_USER_SUCCESS, payload: data });
     }
   } catch (e) {
