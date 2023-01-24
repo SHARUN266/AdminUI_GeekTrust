@@ -1,6 +1,8 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteUserById, FetchUsers } from "../Redux/actions";
+import { Link } from "react-router-dom";
+import { DeleteUserById } from "../Redux/actions";
 import "./SingleUser.css";
 export default function SingleUser(props) {
   const { data } = useSelector((store) => store.FetchUserReducer);
@@ -17,7 +19,9 @@ export default function SingleUser(props) {
       <td>{email}</td>
       <td>{role}</td>
       <td className="action">
-        <button>Edit</button>
+        <Link to={`/${id}`}>
+          <button>Edit</button>
+        </Link>
         <button onClick={() => dispatch(DeleteUserById(data, id))}>
           Delete
         </button>

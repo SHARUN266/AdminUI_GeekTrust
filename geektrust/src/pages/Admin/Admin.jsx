@@ -23,7 +23,7 @@ export default function Admin() {
     dispatch(FetchUsers(text));
   }, [text]);
   useEffect(() => {
-    console.log(data)
+  
     setTotalPages(Math.ceil(data.length / itemsPerPage));
   }, [data, itemsPerPage]);
 
