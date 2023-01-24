@@ -1,13 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DeleteUserById, FetchUsers } from "../Redux/actions";
 import "./SingleUser.css";
 export default function SingleUser(props) {
-  const dispatch=useDispatch()
+  const { data } = useSelector((store) => store.FetchUserReducer);
+  const dispatch = useDispatch();
   const { id, name, email, role } = props;
 
   return (
-    <tr >
+    <tr>
       <td>
         {" "}
         <input type="checkbox" />{" "}
@@ -17,7 +18,9 @@ export default function SingleUser(props) {
       <td>{role}</td>
       <td className="action">
         <button>Edit</button>
-        <button onClick={()=>dispatch(FetchUsers(id))}>Delete</button>
+        <button onClick={() => dispatch(DeleteUserById(data, id))}>
+          Delete
+        </button>
       </td>
     </tr>
   );

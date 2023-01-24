@@ -7,8 +7,7 @@ import {
   FETCH_API_USER_SUCCESS,
 } from "./actionTypes";
 
-export const FetchUsers = (id) => async (dispatch) => {
-  let text;
+export const FetchUsers = (text) => async (dispatch) => {
   dispatch({ type: FETCH_API_USER_LOADING, payload: "User data loading..." });
   try {
     let res = await fetch(
@@ -25,12 +24,7 @@ export const FetchUsers = (id) => async (dispatch) => {
           value.role.includes(text)
       );
       dispatch({ type: FETCH_API_USER_SUCCESS, payload: filterData });
-    }else if(id){
-      data=data.splice(id,1);
-      dispatch({ type: FETCH_API_USER_SUCCESS, payload: data });
-    }
-    
-    else {
+    } else {
       dispatch({ type: FETCH_API_USER_SUCCESS, payload: data });
     }
   } catch (e) {
@@ -38,17 +32,13 @@ export const FetchUsers = (id) => async (dispatch) => {
   }
 };
 
-// export const DeleteUserById = (id) => async (dispatch) => {
-//   dispatch({ type: DELETE_API_USER_LOADING, payload: "User data loading..." });
-//   try {
-//     let res = await fetch(
-//       "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
-//     );
-//     let data = await res.json();
-//     let filterData = data.filter((elem) => elem.id !== id);
+export const DeleteUserById = (data, id) => async (dispatch) => {
+  dispatch({ type: DELETE_API_USER_LOADING, payload: "User data loading..." });
+  try {
+    let filterData = data.filter((elem) => elem.id !== id);
 
-//     dispatch({ type: DELETE_API_USER_SUCCESS, payload: filterData });
-//   } catch (e) {
-//     dispatch({ type: DELETE_API_USER_ERROR, payload: e.message });
-//   }
-// };
+    dispatch({ type: DELETE_API_USER_SUCCESS, payload: filterData });
+  } catch (e) {
+    dispatch({ type: DELETE_API_USER_ERROR, payload: e.message });
+  }
+};
