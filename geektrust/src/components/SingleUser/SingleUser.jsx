@@ -19,9 +19,8 @@ export default function SingleUser(props) {
       <td>{email}</td>
       <td>{role}</td>
       <td className="action">
-        <Link to={`/${id}`}>
-          <button>Edit</button>
-        </Link>
+        <button>Edit</button>
+
         <button onClick={() => dispatch(DeleteUserById(data, id))}>
           Delete
         </button>

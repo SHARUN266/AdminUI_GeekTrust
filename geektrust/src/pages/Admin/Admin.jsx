@@ -7,6 +7,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { FetchUsers } from "../../components/Redux/actions";
 import Search from "../../components/Search/Search";
 import UserTable from "../../components/UserTable/UserTable";
+import EditUser from "../Edit/EditUser";
 import "./Admin.css";
 export default function Admin() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,11 +20,9 @@ export default function Admin() {
     useSelector((store) => store.FetchUserReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    
     dispatch(FetchUsers(text));
   }, [text]);
   useEffect(() => {
-  
     setTotalPages(Math.ceil(data.length / itemsPerPage));
   }, [data, itemsPerPage]);
 
@@ -41,16 +40,21 @@ export default function Admin() {
   function handlePagination(value) {
     setCurrentPage((prev) => prev + value);
   }
-  
+
   return (
     <div className="container">
       <h1>Admin UI</h1>
+
       <Search handleSearch={handleSearch} />
       {isLoading && <h1>{loadingText}</h1>}
       {isError && <h1>{errorText}</h1>}
       {isSuccess && <UserTable user={currentItems} />}
 
-      <Pagination  currentPage={currentPage} totalPages={totalPages} handlePagination={handlePagination} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePagination={handlePagination}
+      />
     </div>
   );
 }

@@ -4,6 +4,7 @@ const initState = {
   loadingText: null,
   isError: false,
   errorText: null,
+  
   isSuccess: false,
   data: [],
 };
@@ -51,6 +52,31 @@ const reducer = (state = initState, { type, payload }) => {
       };
     }
     case types.DELETE_API_USER_ERROR: {
+      return {
+        ...state,
+        isLoading: false,
+        loadingText: null,
+        isError: true,
+        errorText: payload,
+      };
+    }
+    case types.EDIT_API_USER_LOADING: {
+      return {
+        ...state,
+        isLoading: true,
+        loadingText: payload,
+      };
+    }
+    case types.EDIT_API_USER_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        loadingText: null,
+        isSuccess: true,
+        data: payload,
+      };
+    }
+    case types.EDIT_API_USER_ERROR: {
       return {
         ...state,
         isLoading: false,

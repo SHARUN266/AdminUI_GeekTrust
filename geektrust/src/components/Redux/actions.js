@@ -2,6 +2,9 @@ import {
   DELETE_API_USER_ERROR,
   DELETE_API_USER_LOADING,
   DELETE_API_USER_SUCCESS,
+  EDIT_API_USER_ERROR,
+  EDIT_API_USER_LOADING,
+  EDIT_API_USER_SUCCESS,
   FETCH_API_USER_ERROR,
   FETCH_API_USER_LOADING,
   FETCH_API_USER_SUCCESS,
@@ -40,5 +43,24 @@ export const DeleteUserById = (data, id) => async (dispatch) => {
     dispatch({ type: DELETE_API_USER_SUCCESS, payload: filterData });
   } catch (e) {
     dispatch({ type: DELETE_API_USER_ERROR, payload: e.message });
+  }
+};
+
+// Edit User //
+
+export const EditUserById = (data, id, value) => async (dispatch) => {
+  dispatch({ type: EDIT_API_USER_LOADING, payload: "User data loading..." });
+  try {
+    let filterData = data.filter((elem) => elem.id == id);
+    let index = data.indexOf(filterData[0]);
+    let newData = [
+      ...data.slice(0, index),
+      { ...filterData[0], ...value },
+      ...data.slice(index + 1),
+    ];
+
+    dispatch({ type: EDIT_API_USER_SUCCESS, payload: newData });
+  } catch (e) {
+    dispatch({ type: EDIT_API_USER_ERROR, payload: e.message });
   }
 };

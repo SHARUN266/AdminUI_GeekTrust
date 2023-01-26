@@ -8,5 +8,11 @@ export const DELETE_API_USER_SUCCESS = "delete/api/user/success";
 export const DELETE_API_USER_ERROR = "delete/api/user/error";
 
 
+// Edit User //
+export const EDIT_API_USER_LOADING = "edit/api/user/loading";
+export const EDIT_API_USER_SUCCESS = "edit/api/user/success";
+export const EDIT_API_USER_ERROR = "edit/api/user/error";
+
+
 
 
